@@ -1,0 +1,6 @@
+python-telegram-bot
+togglwrapper
+jira
+marshmallow
+flake8
+flake8-bugbear
