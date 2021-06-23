@@ -27,5 +27,4 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.PROD_KEY }}
           script: |
-            whoami
-            ls -al
+            docker images
