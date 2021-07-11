@@ -4,3 +4,4 @@ jira
 marshmallow
 flake8
 flake8-bugbear
+pendulum
