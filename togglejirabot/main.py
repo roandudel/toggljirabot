@@ -1,8 +1,10 @@
+import logging
+
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, Updater
 
 from togglejirabot.decorators import security
-from togglejirabot.handlers import daily, emoji, start, weekly_report
+from togglejirabot.handlers import daily, emoji, start, weekly
 from togglejirabot.settings import TELEGRAM_API_TOKEN
 
 
@@ -16,6 +18,9 @@ def command_help(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
     updater = Updater(token=TELEGRAM_API_TOKEN)
     dispatcher = updater.dispatcher
     # job_queue = updater.job_queue
@@ -23,7 +28,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('help', command_help))
     dispatcher.add_handler(CommandHandler('start', start.command_start))
     dispatcher.add_handler(CommandHandler('emoji', emoji.command_emoji))
-    dispatcher.add_handler(CommandHandler('weekly', weekly_report.command_weekly))
+    dispatcher.add_handler(CommandHandler('weekly', weekly.command_weekly))
     dispatcher.add_handler(CommandHandler('daily', daily.command_daily))
     updater.start_polling()
 
