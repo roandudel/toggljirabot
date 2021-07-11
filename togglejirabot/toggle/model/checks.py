@@ -34,8 +34,8 @@ def check_worktime(projects, timeentries, worktime_goal):
     work_time_in_hours = work_time / 60.0 / 60.0
 
     if work_time_in_hours > worktime_goal:
-        work_time_message += "✅ Du hast dein Ziel von 8 Stunden erreicht! \n"
+        work_time_message += f"✅ Du hast dein Ziel von {worktime_goal} Stunden erreicht! \n"
     else:
-        work_time_message += "❌ Du hast dein Ziel von 8 Stunden nicht erreicht! \n"
+        work_time_message += f"❌ Du hast dein Ziel von {worktime_goal} Stunden nicht erreicht! \n"
 
     return f"{MESSAGE_TEMPLATE_TIME_WORKED} {work_time_in_hours} \n{work_time_message}"
