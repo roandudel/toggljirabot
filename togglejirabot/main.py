@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, Updater
 
 from togglejirabot.decorators import security
-from togglejirabot.handlers import daily, emoji, start, weekly
+from togglejirabot.handlers import booker, daily, emoji, start, weekly
 from togglejirabot.settings import TELEGRAM_API_TOKEN
 
 
@@ -30,6 +30,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('emoji', emoji.command_emoji))
     dispatcher.add_handler(CommandHandler('weekly', weekly.command_weekly))
     dispatcher.add_handler(CommandHandler('daily', daily.command_daily))
+    dispatcher.add_handler(CommandHandler('booker', booker.command_booker))
     updater.start_polling()
 
 

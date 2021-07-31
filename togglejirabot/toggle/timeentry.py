@@ -11,6 +11,9 @@ class TimeEntry:
     def __repr__(self):
         return f"TimeEntry: {self.id} {self.description}"
 
+    def has_description(self):
+        return self.description != ''
+
 
 class TimeEntrySchema(Schema):
     id = fields.Integer(required=True)

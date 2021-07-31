@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import List
+
 from marshmallow import EXCLUDE, Schema, fields, post_load
 
 
@@ -29,11 +33,17 @@ class Projects:
         else:
             return False
 
-    def from_json(self, json):
+    def from_json(self, json) -> Projects:
         schema = ProjectSchema(many=True)
         result = schema.load(json, unknown=EXCLUDE)
 
         for project in result:
+            self.projects_dict[project.id] = project
+
+        return self
+
+    def from_projects_list(self, projects: List[Project]) -> Projects:
+        for project in projects:
             self.projects_dict[project.id] = project
 
         return self

@@ -103,39 +103,6 @@ class ToggleReport:
     def prepare_message(self, projects: Projects, timeentries: TimeEntries, work_time_goal) -> str:
         return self.preparer.prepare_message(projects, timeentries, work_time_goal)
 
-    # mb = MessageBuilder(header=MESSAGE_TEMPLATE_DAILY_REPORT)
-    # work_time = compute_worktime(timeentries)
-    # mb.add_newline()
-    #
-    # mb.add_header(MESSAGE_TEMPLATE_TIME_WORKED + ' ' + str(work_time))
-    #
-    # if is_worktime_goal_achieved(work_time=work_time, worktime_goal=work_time_goal):
-    #     mb.add_header(MESSAGE_TEMPLATE_GOAL_ACHIEVED.format(work_time_goal))
-    # else:
-    #     mb.add_header(MESSAGE_TEMPLATE_GOAL_NOT_ACHIEVED.format(work_time_goal))
-    #
-    # mb.add_newline()
-    # mb.add_header(MESSAGE_TEMPLATE_NO_DESCRIPTION)
-    #
-    # twd = timeentries_without_description(timeentries)
-    # for t in twd:
-    #     mb.add_item(t)
-    #
-    # mb.add_newline()
-    # mb.add_header(MESSAGE_TEMPLATE_NO_PROJECT_ASSIGNED)
-    # twap = timeentries_without_assigned_project(timeentries)
-    # for t in twap:
-    #     mb.add_item(t.description)
-    #
-    # mb.add_newline()
-    # mb.add_header(MESSAGE_TEMPLATE_TIMEENTRY_SHOULD_HAVE_TICKET)
-    #
-    # tshtid = timeentries_should_have_ticket_in_description(projects, timeentries)
-    # for t in tshtid:
-    #     mb.add_item(t.description)
-    #
-    # return mb.message()
-
     def report_for_given_period(self, period, work_time_goal):
         today = pendulum.now("Europe/Berlin")
         begin, end = self.compute_date_period_corners(today, period)

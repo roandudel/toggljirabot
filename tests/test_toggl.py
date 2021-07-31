@@ -1,7 +1,7 @@
 import togglwrapper
 
 from togglejirabot.settings import TOGGL_API_TOKEN
-from togglejirabot.toggle.model.timeentry import TimeEntries
+from togglejirabot.toggle.timeentry import TimeEntries
 
 
 def test_timeentry():
