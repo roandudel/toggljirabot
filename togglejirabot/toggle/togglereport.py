@@ -3,7 +3,8 @@ import logging
 import pendulum
 import togglwrapper
 
-from togglejirabot.settings import TOGGL_API_TOKEN, TOGGL_WORKSPACE_ID
+from togglejirabot.settings import (TOGGL_API_TOKEN, TOGGL_BASE_URL,
+                                    TOGGL_WORKSPACE_ID)
 from togglejirabot.toggle.checks import (
     compute_worktime, is_worktime_goal_achieved,
     timeentries_should_have_ticket_in_description,
@@ -19,7 +20,7 @@ from togglejirabot.toggle.timeentry import TimeEntries
 
 class ToggleDataFetcher:
     def __init__(self):
-        self.toggl = togglwrapper.Toggl(TOGGL_API_TOKEN)
+        self.toggl = togglwrapper.Toggl(api_token=TOGGL_API_TOKEN, base_url=TOGGL_BASE_URL)
 
     def fetch(self, start_date, end_date) -> (Projects, TimeEntries):
         projects_as_json = self.toggl.Workspaces.get_projects(TOGGL_WORKSPACE_ID)

@@ -3,6 +3,7 @@ import os
 TELEGRAM_API_TOKEN = os.getenv('TELEGRAM_API_TOKEN', 1)
 TELEGRAM_CHAT_ID = int(os.getenv('TELEGRAM_CHAT_ID', 1))
 
+TOGGL_BASE_URL = os.getenv('TOGGL_BASE_URL', 'https://api.track.toggl.com/api')
 TOGGL_API_TOKEN = os.getenv('TOGGL_API_TOKEN', 1)
 TOGGL_WORKSPACE_ID = os.getenv('TOGGL_WORKSPACE_ID', 1)
 

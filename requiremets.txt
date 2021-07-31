@@ -1,5 +1,5 @@
 python-telegram-bot
-git+https://github.com/DisyInformationssysteme/togglwrapper.git
+togglwrapper
 jira
 marshmallow
 flake8
