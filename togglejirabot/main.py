@@ -5,7 +5,7 @@ from telegram.ext import CallbackContext, CommandHandler, Updater
 
 from togglejirabot.decorators import security
 from togglejirabot.handlers import booker, daily, emoji, start, weekly
-from togglejirabot.settings import TELEGRAM_API_TOKEN
+from togglejirabot.settings import TELEGRAM_API_TOKEN, LOG_LEVEL
 
 
 @security
@@ -18,7 +18,7 @@ def command_help(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=LOG_LEVEL,
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     updater = Updater(token=TELEGRAM_API_TOKEN)

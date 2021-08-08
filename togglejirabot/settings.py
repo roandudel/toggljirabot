@@ -1,5 +1,7 @@
 import os
 
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
+
 TELEGRAM_API_TOKEN = os.getenv('TELEGRAM_API_TOKEN', 1)
 TELEGRAM_CHAT_ID = int(os.getenv('TELEGRAM_CHAT_ID', 1))
 
