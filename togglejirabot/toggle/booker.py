@@ -14,6 +14,7 @@ def booker(projects: Projects, timeentries: List[TimeEntry]):
 
     # TODO: REFACTOR THIS!
     for t in timeentries:
+        # We only process tickets with projects
         if t.pid in projects:
             project = projects.projects_dict[t.pid]
             if has_ticket_in_text(project.name):
@@ -29,7 +30,11 @@ def booker(projects: Projects, timeentries: List[TimeEntry]):
                 if ticket not in bookers_dict:
                     bookers_dict[ticket] = {'duration': t.duration, 'entries': [t.description]}
                 else:
-                    bookers_dict[ticket]['duration'] += t.duration
+                    if t.description in bookers_dict[ticket]['entries']:
+                        bookers_dict[ticket]['duration'] += t.duration
+                    else:
+                        bookers_dict[ticket]['entries'].append(t.description)
+                        bookers_dict[ticket]['duration'] += t.duration
 
     return bookers_dict
 

@@ -42,3 +42,15 @@ def test_toggle_booker_report():
     message = trbr.prepare_message(PROJECTS, timeentries, 1)
 
     print(message)
+
+
+def test_project_without_ticket_with_multiple_entries():
+    trbr = ToggleReportBookerReport()
+    timeentries = TimeEntries()
+
+    projects = Projects().from_projects_list([Project(1, 'Team A')])
+    timeentries.timeentries = [TimeEntry(1, 1, 'PR-1: Feature A', 3600),
+                               TimeEntry(2, 1, 'PR-1: Feature B', 3600)]
+
+    message = trbr.prepare_message(projects, timeentries, 1)
+    print(message)
