@@ -13,3 +13,10 @@ def command_weekly(update: Update, context: CallbackContext):
     message = ToggleReport().week()
 
     update.effective_chat.send_message(message, parse_mode=ParseMode.HTML)
+
+@security
+def command_last_week(update: Update, context: CallbackContext):
+    logging.info('last_week')
+    message = ToggleReport().last_week()
+
+    update.effective_chat.send_message(message, parse_mode=ParseMode.HTML)

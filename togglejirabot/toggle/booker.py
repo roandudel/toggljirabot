@@ -14,6 +14,8 @@ def booker(projects: Projects, timeentries: List[TimeEntry]):
 
     # TODO: REFACTOR THIS!
     for t in timeentries:
+        if t.duration < 0:
+            break
         # We only process tickets with projects
         if t.pid in projects:
             project = projects.projects_dict[t.pid]

@@ -29,8 +29,10 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('start', start.command_start))
     dispatcher.add_handler(CommandHandler('emoji', emoji.command_emoji))
     dispatcher.add_handler(CommandHandler('weekly', weekly.command_weekly))
+    dispatcher.add_handler(CommandHandler('last_week', weekly.command_last_week))
     dispatcher.add_handler(CommandHandler('daily', daily.command_daily))
     dispatcher.add_handler(CommandHandler('booker', booker.command_booker))
+    dispatcher.add_handler(CommandHandler('last_week_booker', booker.command_last_week_booker))
     updater.start_polling()
 
 

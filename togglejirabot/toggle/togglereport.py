@@ -95,17 +95,23 @@ class ToggleReport:
     def compute_date_period_corners(self, time, period):
         return time.start_of(period).to_atom_string(), time.end_of(period).to_atom_string()
 
+    # TODO: Refactor today initialization?
     def today(self):
-        return self.report_for_given_period('day', 8)
+        today = pendulum.now("Europe/Berlin")
+        return self.report_for_given_period('day', 8, today)
 
     def week(self):
-        return self.report_for_given_period('week', 40)
+        today = pendulum.now("Europe/Berlin")
+        return self.report_for_given_period('week', 40, today)
+
+    def last_week(self):
+        today = pendulum.now("Europe/Berlin").subtract(days=7)
+        return self.report_for_given_period('week', 40, today)
 
     def prepare_message(self, projects: Projects, timeentries: TimeEntries, work_time_goal) -> str:
         return self.preparer.prepare_message(projects, timeentries, work_time_goal)
 
-    def report_for_given_period(self, period, work_time_goal):
-        today = pendulum.now("Europe/Berlin")
+    def report_for_given_period(self, period: str, work_time_goal: int, today):
         begin, end = self.compute_date_period_corners(today, period)
         projects, timeentries = self._fetch_data(begin, end)
 

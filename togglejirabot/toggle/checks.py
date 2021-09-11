@@ -27,7 +27,7 @@ def timeentries_without_description(timeentries: List[TimeEntry]) -> List[TimeEn
 
 def compute_worktime(timeentries: List[TimeEntry], hours=True) -> int:
     """ Compute work time in seconds."""
-    worked_time = sum(te.duration for te in timeentries)
+    worked_time = sum(te.duration for te in timeentries if te.duration > 0)
     if hours:
         return worked_time / 60.0 / 60.0
     return worked_time
