@@ -1,11 +1,12 @@
 import logging
 
-from telegram import Update
-from telegram.ext import CallbackContext, CommandHandler, Updater
+from telegram import ReplyKeyboardRemove, Update
+from telegram.ext import (CallbackContext, CallbackQueryHandler,
+                          CommandHandler, ConversationHandler, Updater)
 
 from togglejirabot.decorators import security
 from togglejirabot.handlers import booker, daily, emoji, start, weekly
-from togglejirabot.settings import TELEGRAM_API_TOKEN, LOG_LEVEL
+from togglejirabot.settings import LOG_LEVEL, TELEGRAM_API_TOKEN
 
 
 @security
@@ -28,12 +29,13 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('help', command_help))
     dispatcher.add_handler(CommandHandler('start', start.command_start))
     dispatcher.add_handler(CommandHandler('emoji', emoji.command_emoji))
-    dispatcher.add_handler(CommandHandler('weekly', weekly.command_weekly))
-    dispatcher.add_handler(CommandHandler('last_week', weekly.command_last_week))
     dispatcher.add_handler(CommandHandler('daily', daily.command_daily))
-    dispatcher.add_handler(CommandHandler('booker', booker.command_booker))
-    dispatcher.add_handler(CommandHandler('last_week_booker', booker.command_last_week_booker))
+
+    dispatcher.add_handler(weekly.weekly_conversation_handler())
+    dispatcher.add_handler(booker.booker_conversation_handler())
+
     updater.start_polling()
+    updater.idle()
 
 
 if __name__ == '__main__':
